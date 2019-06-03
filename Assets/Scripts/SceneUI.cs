@@ -20,7 +20,8 @@ public class SceneUI : BaseUIManager
     {
         Highscore.text = "HIGHSCORE: " + PersistentManager.PM.highscore;
         naame.text = "NAME: " + PersistentManager.PM.oldname;
-        timetaken.text = "TIMETAKEN: " + PersistentManager.PM.TimeTaken;
+        timetaken.text = "TIMETAKEN: " +
+            "" + PersistentManager.PM.TimeTaken;
     }
 
     void Update()
@@ -33,6 +34,7 @@ public class SceneUI : BaseUIManager
             
             gameovermenupanel.SetActive(true);
         }
+        
     }
 
     public override void resume()

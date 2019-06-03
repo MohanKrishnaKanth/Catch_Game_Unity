@@ -11,6 +11,8 @@ public class MenuUI : BaseUIManager
     public Text highScore_name,texttime,timeTaken;
     public GameObject InfoPanel;
     bool a = false, b = false;
+    public Toggle t;
+    public Text inputtype, newnametext;
     private void Start()
     {
         if(MU==null)
@@ -43,7 +45,7 @@ public class MenuUI : BaseUIManager
             SceneManager.LoadScene(gamescene);
             Time.timeScale = 1;
             PersistentManager.PM.currentscore = 0;
-            PersistentManager.PM.newname = gameObject.transform.Find("info").gameObject.transform.Find("Name").gameObject.transform.Find("Text").gameObject.GetComponent<Text>().text;
+            PersistentManager.PM.newname = newnametext.GetComponent<Text>().text;
           
         }
     }
@@ -79,5 +81,18 @@ public class MenuUI : BaseUIManager
     public void oktime()
     {
         b = true;
+    }
+
+    public void ValueChange()
+    {
+        bool switchon = t.GetComponent<Toggle>().isOn;
+        if (switchon)
+        {
+            inputtype.GetComponent<Text>().text = "ACCELROMETER";
+        }
+        else
+        {
+            inputtype.GetComponent<Text>().text = "TOUCH";
+        }
     }
 }

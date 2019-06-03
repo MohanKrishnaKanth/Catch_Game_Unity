@@ -12,6 +12,7 @@ public class PersistentManager : BasePersistentManager
     public string oldname,newname;
     public float TimeCount;
     public float TimeTaken;
+    public Toggle inputtoggle;
   
     private void Awake()
     {
@@ -47,7 +48,7 @@ public class PersistentManager : BasePersistentManager
     public override void save()
     {
         BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.dataPath+ "/GameData.data");
+        FileStream file = File.Create(Application.persistentDataPath + "/GameData.data");
         GameData data = new GameData();
         data._HighScore = highscore;
         data._Name = newname;
@@ -59,10 +60,10 @@ public class PersistentManager : BasePersistentManager
 
     public override void load()
     {
-        if(File.Exists(Application.dataPath+"/GameData.data"))
+        if(File.Exists(Application.persistentDataPath +"/GameData.data"))
         {
             BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.dataPath + "/GameData.data", FileMode.Open);
+            FileStream file = File.Open(Application.persistentDataPath + "/GameData.data", FileMode.Open);
             GameData data = (GameData)bf.Deserialize(file);
             highscore = data._HighScore;
             oldname = data._Name;
